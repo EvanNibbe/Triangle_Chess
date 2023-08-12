@@ -1,0 +1,17 @@
+file /home/evannibbe/godot_4_beta_v_Mar_16/godot/SConstruct,line 931:
+	Configure(confdir = .sconf_temp)
+scons: Configure: Checking for C header file mntent.h... 
+scons: Configure: ".sconf_temp/conftest_0.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_0.c <-
+  |  |
+  |  |#include "mntent.h"
+  |  |
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_0.linuxbsd.editor.x86_64.o" is up to date.
+scons: Configure: The original builder output was:
+  |[0;94mCompiling [1;94m.sconf_temp/conftest_0.c[0;94m ...[0m
+  |
+scons: Configure: (cached) yes
+
