@@ -1,0 +1,1 @@
+The thirdparty folder in Godot had a README.md as the only file that was contained at the top level, but uploading that would have conflicted with the Godot README, and I had to upload something that could be changed to create the thirdparty folder.
