@@ -1,0 +1,1 @@
+This folder contained images, which can't be edited in GitHUb, and editing a file is how you create a subfolder.
