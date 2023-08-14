@@ -1,0 +1,1 @@
+Embree didn't have a top level file to create the folder from in Godot, and also has subfolders conataining more than 100 files.
