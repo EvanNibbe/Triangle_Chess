@@ -1,0 +1,1 @@
+This file is written because platform/android/java/lib/src doesn't have a top level file, and there are too many files in the "org" subfolder to simply upload the src folder directly, so I need to make this file and edit it to create the src folder, which I can then load things into.
