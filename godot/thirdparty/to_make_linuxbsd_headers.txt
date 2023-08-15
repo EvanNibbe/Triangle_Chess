@@ -1,0 +1,1 @@
+The top level file of linuxbsd_headers is a README.md, which conflicts with the file at the top level of thridparty, so this file needs to be made in order to later edit it to make a subfolder.
