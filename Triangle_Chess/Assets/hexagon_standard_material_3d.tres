@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bdecxbw334xng"]
+
+[resource]
+cull_mode = 2
+depth_draw_mode = 1
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+metallic_specular = 0.0
+roughness = 0.44

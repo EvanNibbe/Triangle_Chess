@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://bi7h0xmynjg2v"]
+
+[ext_resource type="Script" path="res://Scripts/spiral_rook.gd" id="1_sxmqm"]
+[ext_resource type="ArrayMesh" uid="uid://bdppbpov5pk7e" path="res://Imports/triangle_chess_spiral_rook_3.obj" id="2_7ra67"]
+[ext_resource type="PackedScene" uid="uid://dvksplxp8pyf6" path="res://Assets/rook_defender.tscn" id="3_006am"]
+[ext_resource type="Shader" path="res://Scripts/bishop_vertex_color.gdshader" id="3_x17m4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6lgak"]
+render_priority = 0
+shader = ExtResource("3_x17m4")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7rjdd"]
+radius = 0.203389
+
+[node name="spiral_rook" type="StaticBody3D"]
+input_ray_pickable = false
+script = ExtResource("1_sxmqm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_7ra67")
+surface_material_override/0 = SubResource("ShaderMaterial_6lgak")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0599866, 0.279507, -0.0481567)
+shape = SubResource("SphereShape3D_7rjdd")
+
+[node name="rook_defender" parent="." instance=ExtResource("3_006am")]
+input_ray_pickable = false

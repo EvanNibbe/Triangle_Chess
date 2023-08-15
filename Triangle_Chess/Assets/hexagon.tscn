@@ -1,0 +1,93 @@
+[gd_scene load_steps=9 format=3 uid="uid://clomiksm6j746"]
+
+[ext_resource type="ArrayMesh" uid="uid://nbv7u1trsdn6" path="res://Imports/triangle_chess_base_hexagon_colored_2_red_with_different_geometry.obj" id="1_6ihp4"]
+[ext_resource type="Shader" uid="uid://bp3rycumgiqsj" path="res://Assets/hexagon_color_shader.tres" id="2_mnsm2"]
+[ext_resource type="PackedScene" uid="uid://cys3gakxiexr7" path="res://Assets/triangle_basis.tscn" id="2_x5no3"]
+[ext_resource type="Texture2D" uid="uid://blebogjxwlq3v" path="res://Imports/spiral_distance_field.png" id="3_m2pjl"]
+[ext_resource type="Script" path="res://Scripts/hexagon.gd" id="4_hrpkw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8elbe"]
+render_priority = 0
+shader = ExtResource("2_mnsm2")
+shader_parameter/albedo = Color(0.694118, 0.694118, 0.694118, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.44
+shader_parameter/metallic_texture_channel = Vector4(1, 1, 1, 0)
+shader_parameter/specular = 0.0
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_metallic = ExtResource("3_m2pjl")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_11d0h"]
+size = Vector3(3.464, 1, 2)
+
+[sub_resource type="SphereMesh" id="SphereMesh_2tcie"]
+
+[node name="Hexagon" type="MeshInstance3D"]
+mesh = ExtResource("1_6ihp4")
+surface_material_override/0 = SubResource("ShaderMaterial_8elbe")
+script = ExtResource("4_hrpkw")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_11d0h")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 0, 0, 0)
+shape = SubResource("BoxShape3D_11d0h")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 0, 0, 0)
+shape = SubResource("BoxShape3D_11d0h")
+
+[node name="red_spot_1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.577, 0, 1)
+visible = false
+mesh = SubResource("SphereMesh_2tcie")
+
+[node name="white_spot_2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.577, 0, 1)
+visible = false
+mesh = SubResource("SphereMesh_2tcie")
+
+[node name="black_spot_3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.155, 0, 0)
+visible = false
+mesh = SubResource("SphereMesh_2tcie")
+
+[node name="green_spot_4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.577, 0, -1)
+visible = false
+mesh = SubResource("SphereMesh_2tcie")
+
+[node name="brown_spot_5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.577, 0, -1)
+visible = false
+mesh = SubResource("SphereMesh_2tcie")
+
+[node name="blue_spot_6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.155, 0, 0)
+visible = false
+mesh = SubResource("SphereMesh_2tcie")
+
+[node name="triangle_spot_1" parent="." instance=ExtResource("2_x5no3")]
+
+[node name="triangle_spot_2" parent="." instance=ExtResource("2_x5no3")]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 0, 0, 0)
+
+[node name="triangle_spot_3" parent="." instance=ExtResource("2_x5no3")]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 0, 0, 0)
+
+[node name="triangle_spot_4" parent="." instance=ExtResource("2_x5no3")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="triangle_spot_5" parent="." instance=ExtResource("2_x5no3")]
+transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 0, 0, 0)
+
+[node name="triangle_spot_6" parent="." instance=ExtResource("2_x5no3")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0, 0, 0)

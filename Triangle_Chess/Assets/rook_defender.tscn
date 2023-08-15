@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvksplxp8pyf6"]
+
+[ext_resource type="ArrayMesh" uid="uid://dyt42op5228ai" path="res://Imports/rook_defender.obj" id="1_hx67d"]
+[ext_resource type="Shader" path="res://Scripts/bishop_vertex_color.gdshader" id="2_7ybru"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_karjm"]
+render_priority = 0
+shader = ExtResource("2_7ybru")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xwm2i"]
+size = Vector3(0.383048, 1.07677, 0.400706)
+
+[node name="rook_defender" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.173, 0, 0, 0, 1, 0, 0, 0, 1.173, 0.0833092, 0, 0)
+mesh = ExtResource("1_hx67d")
+surface_material_override/0 = SubResource("ShaderMaterial_karjm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.404964, 0.53188, 0.822217)
+shape = SubResource("BoxShape3D_xwm2i")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.91359, 0.53188, 0.00313455)
+shape = SubResource("BoxShape3D_xwm2i")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.401084, 0.53188, -0.818536)
+shape = SubResource("BoxShape3D_xwm2i")

@@ -1,0 +1,78 @@
+[gd_scene load_steps=13 format=3 uid="uid://d0bljwqn4k0g5"]
+
+[ext_resource type="ArrayMesh" uid="uid://d3eff2o1uygl4" path="res://Imports/pawn.obj" id="1_6ausp"]
+[ext_resource type="Script" path="res://Scripts/pawn.gd" id="1_fbbwu"]
+[ext_resource type="Shader" path="res://Scripts/bishop_vertex_color.gdshader" id="3_soqrf"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2bv07"]
+friction = 0.22
+bounce = 0.7
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_csrxn"]
+render_priority = 0
+shader = ExtResource("3_soqrf")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hws62"]
+radius = 0.439775
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_km6rp"]
+height = 0.195178
+radius = 0.584031
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_rntun"]
+height = 0.0923819
+radius = 0.544238
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_77j6m"]
+height = 0.0923819
+radius = 0.504376
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_hx040"]
+height = 0.0923819
+radius = 0.421505
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_8efq2"]
+height = 0.0923819
+radius = 0.354124
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_m7old"]
+height = 0.0923819
+radius = 0.338791
+
+[node name="pawn" type="StaticBody3D"]
+input_ray_pickable = false
+physics_material_override = SubResource("PhysicsMaterial_2bv07")
+script = ExtResource("1_fbbwu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+mesh = ExtResource("1_6ausp")
+surface_material_override/0 = SubResource("ShaderMaterial_csrxn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0121002, 0.928165, -0.00921345)
+shape = SubResource("SphereShape3D_hws62")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00596619, 0.101625, -0.00921345)
+shape = SubResource("CylinderShape3D_km6rp")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0032196, 0.252576, -0.00921345)
+shape = SubResource("CylinderShape3D_rntun")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0032196, 0.346166, -0.00921345)
+shape = SubResource("CylinderShape3D_77j6m")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0121002, 0.442777, -0.00921345)
+shape = SubResource("CylinderShape3D_hx040")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00904846, 0.542406, -0.00921345)
+shape = SubResource("CylinderShape3D_8efq2")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00904846, 0.642036, -0.00921345)
+shape = SubResource("CylinderShape3D_m7old")

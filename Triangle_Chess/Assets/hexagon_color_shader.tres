@@ -1,0 +1,72 @@
+[gd_resource type="Shader" format=3 uid="uid://bp3rycumgiqsj"]
+
+[resource]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.1.dev's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_always,cull_disabled,diffuse_burley,specular_schlick_ggx, skip_vertex_transform, world_vertex_coords;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+varying vec3 real_coord;
+varying vec2 reverse_uv;
+instance uniform vec3 hex_pos;
+
+void vertex() {
+	if (!OUTPUT_IS_SRGB) {
+		COLOR.rgb = mix(pow((COLOR.rgb + vec3(0.055)) * (1.0 / (1.0 + 0.055)), vec3(2.4)), COLOR.rgb * (1.0 / 12.92), lessThan(COLOR.rgb, vec3(0.04045)));
+	}
+	real_coord=VERTEX+hex_pos;
+	float r=length(real_coord.xz);
+	float theta=atan(real_coord.z, real_coord.x);
+	float x=r*cos(theta+TIME/100.0);
+	float z=r*sin(theta+TIME/100.0);
+	float weird_side_length=19.0787; //consider that the longest regular distance between 2 adjacent hexagons is 4, and there are 91 hexagons, void
+	//19.0787 is sqrt(4*91), and should represent the side length of a square encompassing the overall board. void
+	//alternatively, I could just do 11*2*sqrt(3), which is the distance from the top of the board to the bottom of the board.
+	//38.105 is 11*2*sqrt(3)
+	//however, we would need to use half of that value to do the dual process of expanding the coordinate system and moving the 
+	//center of the coordinate system to the bottom left corner of the screen. void
+	//so we use 19.05255888, which might as well be increased slightly (to avoid the unsightly edges of the square holding the spiral as a png)
+	UV=vec2(x/weird_side_length/2.0+weird_side_length, -z/weird_side_length/2.0 + weird_side_length); //13.49 is the weird side length I found from my knowledge (1) that there are 91 hexagons (2) each hexagon has a side length of 2
+	reverse_uv=vec2(r*cos(theta-TIME/99.7)/weird_side_length/2.0+weird_side_length, r*sin(theta-TIME/99.7)/weird_side_length/2.0+weird_side_length);
+	//UV=UV*uv1_scale.xy+uv1_offset.xy; //the original UV map wasn't done, so we can't use the value of UV from the beginning.
+	VERTEX=(MODELVIEW_MATRIX*vec4(VERTEX, 1.0)).xyz;
+	NORMAL=normalize(((MODELVIEW_MATRIX*vec4(NORMAL, 0.0)).xyz));
+	
+}
+
+
+
+
+
+
+void fragment() {
+	vec2 base_uv = UV; //this is now a slowly spinning UV coordinate with respect to the global origin.
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	albedo_tex *= COLOR;
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	//METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_metallic,reverse_uv),metallic_texture_channel);
+	//ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	if (length(COLOR.rgb)>1.7) {
+		ALBEDO=vec3(metallic_tex);
+	}
+	 else if (length(COLOR.rgb)<.03) {
+		ALBEDO=vec3(0.0, .001, roughness_tex);
+	}
+}
+"

@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://dlcuq7dibmn3s"]
+
+[ext_resource type="Script" path="res://Scripts/rook.gd" id="1_exvf7"]
+[ext_resource type="ArrayMesh" uid="uid://cpspyq30w61rx" path="res://Imports/rook_3_vertex_color.obj" id="2_k4fuc"]
+[ext_resource type="Shader" path="res://Scripts/bishop_vertex_color.gdshader" id="3_3n1xd"]
+[ext_resource type="PackedScene" uid="uid://dvksplxp8pyf6" path="res://Assets/rook_defender.tscn" id="4_yq2ge"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ur5jf"]
+render_priority = 0
+shader = ExtResource("3_3n1xd")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i22f3"]
+size = Vector3(0.686888, 1.15998, 1.15314)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_djgk5"]
+size = Vector3(0.508374, 1.15998, 0.601512)
+
+[node name="rook" type="StaticBody3D"]
+input_ray_pickable = false
+script = ExtResource("1_exvf7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_k4fuc")
+surface_material_override/0 = SubResource("ShaderMaterial_ur5jf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.232843, 0.576173, 0)
+shape = SubResource("BoxShape3D_i22f3")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.325981, 0.576173, -0.00194043)
+shape = SubResource("BoxShape3D_djgk5")
+
+[node name="rook_defender" parent="." instance=ExtResource("4_yq2ge")]
+input_ray_pickable = false

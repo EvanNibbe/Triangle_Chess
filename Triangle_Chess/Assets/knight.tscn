@@ -1,0 +1,64 @@
+[gd_scene load_steps=11 format=3 uid="uid://ckhfupb4hcib2"]
+
+[ext_resource type="Script" path="res://Scripts/knight.gd" id="1_4wny4"]
+[ext_resource type="ArrayMesh" uid="uid://dll3dyw6wvegw" path="res://Imports/triangle_chess_horse_1_vertex_color.obj" id="1_14yxk"]
+[ext_resource type="Shader" path="res://Scripts/bishop_vertex_color.gdshader" id="2_clwbo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u2pwx"]
+render_priority = 0
+shader = ExtResource("2_clwbo")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kq3ld"]
+size = Vector3(1.05672, 1, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rqyvh"]
+radius = 0.55
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jueyv"]
+radius = 0.362008
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_upsj0"]
+radius = 0.25
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rclxr"]
+radius = 0.25
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kfp2w"]
+radius = 0.175257
+
+[node name="knight" type="StaticBody3D"]
+input_ray_pickable = false
+script = ExtResource("1_4wny4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.928, 0, 0, 0, 0.9, 0, 0, 0, 0.928, 0, 0, 0)
+mesh = ExtResource("1_14yxk")
+surface_material_override/0 = SubResource("ShaderMaterial_u2pwx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0576409, 0.648499, -0.0320101)
+shape = SubResource("BoxShape3D_kq3ld")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0382125, 1.38532, 0.00108162)
+shape = SubResource("SphereShape3D_rqyvh")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.146575, 1.99573, -0.0440399)
+shape = SubResource("SphereShape3D_jueyv")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.206279, 2.43681, 0.0121579)
+shape = SubResource("SphereShape3D_upsj0")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.130862, 2.54571, 0.00181293)
+shape = SubResource("SphereShape3D_upsj0")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0377925, 2.64868, -0.00724316)
+shape = SubResource("SphereShape3D_rclxr")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.414994, 2.50122, -0.00440448)
+shape = SubResource("SphereShape3D_kfp2w")

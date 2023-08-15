@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://dcoyr5qbtxv5t"]
+
+[ext_resource type="Shader" path="res://Scripts/bishop_vertex_color.gdshader" id="1_3ak3j"]
+[ext_resource type="Script" path="res://Scripts/king.gd" id="1_h2hqc"]
+[ext_resource type="ArrayMesh" uid="uid://clihwdqri3jyw" path="res://Imports/triangle_chess_king_3.obj" id="2_ymycw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t4bdd"]
+render_priority = 0
+shader = ExtResource("1_3ak3j")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wc6im"]
+size = Vector3(1, 1.75797, 0.142855)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7m07e"]
+size = Vector3(1, 0.837153, 0.142855)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8j1bo"]
+size = Vector3(0.294593, 0.837153, 0.304481)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_oe8d5"]
+radius = 0.206301
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_r5t17"]
+radius = 0.526005
+
+[node name="king" type="StaticBody3D"]
+input_ray_pickable = false
+script = ExtResource("1_h2hqc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_t4bdd")
+mesh = ExtResource("2_ymycw")
+
+[node name="king_defender" type="StaticBody3D" parent="."]
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="king_defender"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.61894, 0.551591)
+shape = SubResource("BoxShape3D_wc6im")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="king_defender"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.61894, -0.537967)
+shape = SubResource("BoxShape3D_wc6im")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="king_defender"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.512023, 0.968745, 0.0288314)
+shape = SubResource("BoxShape3D_7m07e")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="king_defender"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.435518, 0.968745, -0.733329)
+shape = SubResource("BoxShape3D_8j1bo")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="king_defender"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.435518, 0.968745, 0.732328)
+shape = SubResource("BoxShape3D_8j1bo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.70063, 0)
+shape = SubResource("SphereShape3D_oe8d5")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0492659, 1.33729, 0)
+shape = SubResource("SphereShape3D_r5t17")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.120086, 0.388165, 0)
+shape = SubResource("SphereShape3D_r5t17")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.514501, 0.317721, 0)
+shape = SubResource("SphereShape3D_r5t17")

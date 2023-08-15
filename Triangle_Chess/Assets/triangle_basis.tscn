@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://cys3gakxiexr7"]
+
+[ext_resource type="ArrayMesh" uid="uid://dyri5ts23whgc" path="res://Imports/triangle_chess_base_red_triangle_spot.obj" id="1_fqpep"]
+[ext_resource type="Script" path="res://Scripts/triangle_basis.gd" id="1_quby2"]
+[ext_resource type="Shader" path="res://Assets/triangle_basis.gdshader" id="2_u46qt"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mxcd5"]
+friction = 0.22
+bounce = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rcnod"]
+render_priority = 0
+shader = ExtResource("2_u46qt")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_1croi"]
+points = PackedVector3Array(1.69205, 0, 1, 0.02, 0, 1.96536, 0.02, 0, 0.034642, 0.0799031, 0.06, 0.138397, 1.57192, 0.06, 1, 0.0799031, 0.06, 1.86141)
+
+[sub_resource type="PrismMesh" id="PrismMesh_x3fmk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tdnvr"]
+cull_mode = 2
+depth_draw_mode = 1
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="triangle_basis" type="Node3D"]
+script = ExtResource("1_quby2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_mxcd5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+mesh = ExtResource("1_fqpep")
+surface_material_override/0 = SubResource("ShaderMaterial_rcnod")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_1croi")
+
+[node name="center_triangle" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.577, 0.06, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="center_triangle"]
+transform = Transform3D(-8.74228e-08, 1.732, -1.31134e-07, 0, -7.57081e-08, -3, -2, -7.57081e-08, 5.73206e-15, 0.289, 1.5, 0)
+visible = false
+mesh = SubResource("PrismMesh_x3fmk")
+surface_material_override/0 = SubResource("StandardMaterial3D_tdnvr")
+
+[connection signal="mouse_entered" from="StaticBody3D" to="." method="_on_static_body_3d_mouse_entered"]
+[connection signal="mouse_exited" from="StaticBody3D" to="." method="_on_static_body_3d_mouse_exited"]
