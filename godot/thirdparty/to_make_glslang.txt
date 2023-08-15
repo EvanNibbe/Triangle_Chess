@@ -1,0 +1,1 @@
+The top level license file would have conflicted with the files one folder up, so this file is put in as the placeholder with which to create the glslang folder.
