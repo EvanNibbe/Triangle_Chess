@@ -12,13 +12,13 @@ The compilation process for the contents of the godot folder is:
 
 
 # Compiling with MacOS
-cd ~
-brew install cmake
-brew install python3
-git clone httpe://github.com/KhronosGroup/MoltenVK.git
-cd MoltenVK
-./fetchDependencies --macos
-make macos
-
-#cd back to the godot folder, presumably "cd ~/TriangleChess/godot"
-scons target=editor CXXFLAGS=-O3 use_lto=yes platform=macos vulkan_sdk_path=~/MoltenVK
+cd ~                                                                                                                \n
+brew install cmake                                                                                                  \n
+brew install python3                                                                                                \n
+git clone httpe://github.com/KhronosGroup/MoltenVK.git                                                              \n
+cd MoltenVK                                                                                                         \n
+./fetchDependencies --macos                                                                                         \n
+make macos                                                                                                          \n
+                                                                                                                    \n
+#cd back to the godot folder, presumably "cd ~/TriangleChess/godot"                                                 \n
+scons target=editor CXXFLAGS=-O3 use_lto=yes platform=macos vulkan_sdk_path=~/MoltenVK                              \n
