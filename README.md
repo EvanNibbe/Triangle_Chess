@@ -12,13 +12,13 @@ The compilation process for the contents of the godot folder is:
 
 
 # Compiling with MacOS
-cd ~                                                                                                                \n
-brew install cmake                                                                                                  \n
-brew install python3                                                                                                \n
-git clone httpe://github.com/KhronosGroup/MoltenVK.git                                                              \n
-cd MoltenVK                                                                                                         \n
-./fetchDependencies --macos                                                                                         \n
-make macos                                                                                                          \n
-                                                                                                                    \n
-#cd back to the godot folder, presumably "cd ~/TriangleChess/godot"                                                 \n
-scons target=editor CXXFLAGS=-O3 use_lto=yes platform=macos vulkan_sdk_path=~/MoltenVK                              \n
+cd ~                                                                                                                <br>
+brew install cmake                                                                                                  <br>
+brew install python3                                                                                                <br>
+git clone httpe://github.com/KhronosGroup/MoltenVK.git                                                              <br>
+cd MoltenVK                                                                                                         <br>
+./fetchDependencies --macos                                                                                         <br>
+make macos                                                                                                          <br>
+                                                                                                                    <br>
+#cd back to the godot folder, presumably "cd ~/TriangleChess/godot"                                                 <br>
+scons target=editor CXXFLAGS=-O3 use_lto=yes platform=macos vulkan_sdk_path=~/MoltenVK                              <br>
