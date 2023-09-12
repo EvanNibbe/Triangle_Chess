@@ -9,3 +9,16 @@ The compilation process for the contents of the godot folder is:
 4. cd bin
 5. open the one file in the bin folder (this is the godot executable).
 6. use "scan" and find the Triangle_Chess/Triangle_Chess folder, and press "choose current folder" (or the equivalent statement)
+
+
+# Compiling with MacOS
+cd ~
+brew install cmake
+brew install python3
+git clone httpe://github.com/KhronosGroup/MoltenVK.git
+cd MoltenVK
+./fetchDependencies --macos
+make macos
+
+#cd back to the godot folder, presumably "cd ~/TriangleChess/godot"
+scons target=editor CXXFLAGS=-O3 use_lto=yes platform=macos vulkan_sdk_path=~/MoltenVK
