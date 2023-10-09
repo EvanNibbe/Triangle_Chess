@@ -15,7 +15,7 @@ The compilation process for the contents of the godot folder is:
 cd ~                                                                                                                <br>
 brew install cmake                                                                                                  <br>
 brew install python3                                                                                                <br>
-git clone httpe://github.com/KhronosGroup/MoltenVK.git                                                              <br>
+git clone https://github.com/KhronosGroup/MoltenVK.git                                                              <br>
 cd MoltenVK                                                                                                         <br>
 ./fetchDependencies --macos                                                                                         <br>
 make macos                                                                                                          <br>
