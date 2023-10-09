@@ -20,5 +20,5 @@ cd MoltenVK                                                                     
 ./fetchDependencies --macos                                                                                         <br>
 make macos                                                                                                          <br>
                                                                                                                     <br>
-#cd back to the godot folder, presumably "cd ~/TriangleChess/godot"                                                 <br>
-scons target=editor CXXFLAGS=-O3 use_lto=yes platform=macos vulkan_sdk_path=~/MoltenVK                              <br>
+#cd back to the godot folder, presumably "cd \~/TriangleChess/godot"                                                 <br>
+scons target=editor CXXFLAGS=-O3 use_lto=yes platform=macos vulkan_sdk_path=\~/MoltenVK                              <br>
